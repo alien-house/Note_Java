@@ -15,7 +15,6 @@ public class NoteController {
     private NoteView myView;
     private NoteModel myModel;
     
-    
     public NoteController(NoteView myView, NoteModel myModel){
         this.myView = myView;
         this.myModel = myModel;
