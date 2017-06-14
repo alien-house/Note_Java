@@ -25,10 +25,9 @@ import javax.swing.tree.DefaultTreeModel;
  */
 public class NoteView extends JFrame {
     
-    
-  static String JSON_FILE_NAME = "/Users/shinji/Mydata/personalmarketing/english/canada/school/CICCC/subject/202/Note/javafinalproject-eaa83-firebase-adminsdk-fb4es-75ae0e7d75.json";
-  static String URL = "https://javafinalproject-eaa83.firebaseio.com";
-    
+    static String JSON_FILE_NAME = "/Users/shinji/Mydata/personalmarketing/english/canada/school/CICCC/subject/202/Note/javafinalproject-eaa83-firebase-adminsdk-fb4es-75ae0e7d75.json";
+    static String URL = "https://javafinalproject-eaa83.firebaseio.com";
+
     private JPanel controlPanel;
     private JButton loadButton = new JButton("Load Data");
     private JButton writeButton = new JButton("Write Data");
@@ -37,7 +36,7 @@ public class NoteView extends JFrame {
     
     public NoteView() throws FileNotFoundException{
         controlPanel = new JPanel();
-//        this.setTitle("Load Data");
+        this.setTitle("Load Data");
 //        this.setLayout(new GridLayout(3, 3));
 //        
 //        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -101,43 +100,7 @@ public class NoteView extends JFrame {
         
         
 
-//For each component to be added to this container:
-//...Create the component...
-//...Set instance variables in the GridBagConstraints instance...
-//pane.add(theComponent, c);
         
-
-
-
-//        Panel p1 = new Panel();
-//        Panel p2 = new Panel();
-//        Panel p3 = new Panel();
-//        Button b1 = new Button("B1");
-//        Button b2 = new Button("B2");
-//        Button b3 = new Button("B3");
-//        Button b4 = new Button("B4");
-//
-//        setLayout(new GridLayout(1, 3));
-//        add(p1);
-//        add(p2);
-//        add(p3);
-//        p1.setLayout(new GridLayout(1, 1));
-//        p2.setLayout(new GridLayout(3, 1));
-//        p1.add(b1);
-//        p2.add(b2);
-//        p2.add(b3);
-//        p2.add(b4);
-//        setSize(300, 200);
-
-
-
-
-//        this.add(pane);
-        
-        
-        
-
-
         
         this.setLayout(new GridBagLayout());// set LayoutManager
         GridBagConstraints gbc = new GridBagConstraints();
@@ -146,24 +109,26 @@ public class NoteView extends JFrame {
         gbc.fill = GridBagConstraints.BOTH;
         gbc.anchor = GridBagConstraints.NORTHWEST;
         
+        gbc.weightx = gbc.weighty = 0.5;
         //left
         JPanel panelLeft = new JPanel();
         panelLeft.setBorder(BorderFactory.createTitledBorder(eBorder, "20pct"));
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.gridwidth = 1;
-        gbc.gridheight = 2;
-        gbc.weightx = gbc.weighty = 10;
-        panelLeft.add(writeButton);
+        gbc.gridx = 0; //リーディングエッジを含むセルを指定
+        gbc.gridy = 0; //上部にセルを指定
+        gbc.gridwidth = 1; // 1 行のセル数を指定
+        gbc.gridheight = 2; // 1 列のセル数を指定
+//        gbc.weightx = gbc.weighty = 20; //余分の水平スペースを分配する方法を指定
+//        panelLeft.add(writeButton);
         add(panelLeft, gbc);
         
+        gbc.weightx = gbc.weighty = 1;
         //center : editor
         JPanel panel1 = new JPanel();
         panel1.setBorder(BorderFactory.createTitledBorder(eBorder, "70pct"));
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.gridwidth = gbc.gridheight = 1;
-        gbc.weightx = gbc.weighty = 60;
+//        gbc.weightx = gbc.weighty = 30;
         add(panel1, gbc); // add compoenet to the COntentPane
 
 //        JPanel panel2 = new JPanel();
@@ -176,16 +141,17 @@ public class NoteView extends JFrame {
         //right : preview
         JPanel panel3 = new JPanel();
         panel3.setBorder(BorderFactory.createTitledBorder(eBorder, "20pct"));
-        gbc.gridx =2;
+        gbc.gridx = 2;
         gbc.gridy = 0;
         gbc.gridwidth = /*gbc.gridheight = */1;
         gbc.gridheight = 2;
-        gbc.weightx = /*gbc.weighty = */20;
+//        gbc.weightx = /*gbc.weighty = */20;
+        //コンポーネントの外側のパディング、つまりコンポーネントとその表示領域の端までの領域の最小値を指定します。
         gbc.insets = new Insets(2, 2, 2, 2);
         add(panel3, gbc);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(500, 600);
+        this.setSize(700, 600);
         this.setTitle("タイトル");
 
 //        pack();
@@ -201,10 +167,6 @@ public class NoteView extends JFrame {
         //--------------------------------
         
         //--------------------------------
-        
-        
-        
-        
         
         
         
