@@ -24,15 +24,23 @@ public class NoteView extends JFrame {
     private JPanel controlPanel;
     private JButton loadButton = new JButton("Load Data");
     private JButton writeButton = new JButton("Write Data");
-    private JTextArea txtArea = new JTextArea(10,20);
+    private JButton newNoteButton = new JButton("New Note");
+    private JTextArea txtArea = new JTextArea();
     private JTree tree;
     private DefaultTreeModel model;
     private DefaultMutableTreeNode root;
     ArrayList<String> titleList = new ArrayList<String>();
-
+    int gameHeight;
     
     public NoteView(){
         
+        Toolkit tk = Toolkit.getDefaultToolkit();  
+        int xSize = ((int) tk.getScreenSize().getWidth());  
+        int ySize = ((int) tk.getScreenSize().getHeight()); 
+        int gameHeight = (int) (Math.round(ySize * 0.80));
+        txtArea.setBounds(0, 0, 10, ySize);
+        txtArea.setLineWrap(true);
+        txtArea.setWrapStyleWord(true);
         this.setTitle("Note");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setBounds(10, 10, 700, 600);
@@ -67,7 +75,19 @@ public class NoteView extends JFrame {
         
     }
     public void setGridFrameCenter(){
-        JPanel cPanel = new JPanel(new BorderLayout(5, 5));
+        
+        JPanel compPanel = new JPanel();
+        JPanel panel = new JPanel(new GridLayout(6, 1, 5, 5)); 
+        panel.add(txtArea);
+        compPanel.add(panel);
+        compPanel.setBackground(Color.DARK_GRAY);
+        panel.setBackground(Color.DARK_GRAY);
+        
+        
+        JPanel centerPanel = new JPanel(new BorderLayout(5, 5));
+        centerPanel.setBackground(Color.DARK_GRAY);
+        centerPanel.add(panel, BorderLayout.CENTER);
+        add(centerPanel, BorderLayout.CENTER);
         
     }
     
@@ -138,8 +158,9 @@ public class NoteView extends JFrame {
         root = (DefaultMutableTreeNode) model.getRoot();
         
         JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBackground(Color.LIGHT_GRAY);
         scrollPane.getViewport().setView(tree);
-        scrollPane.setPreferredSize(new Dimension(180, 120));
+        scrollPane.setPreferredSize(new Dimension(120, gameHeight));
     }
     
     
