@@ -24,7 +24,9 @@ public class NoteController {
         this.myModel = myModel;
         this.myView.addLoadDataListener(new loaddataListner());
         this.myView.addSaveDataListener(new savedataListner());
+        this.myView.addNewNoteListener(new newnoteListner());
         this.myView.addSelectTreeListener(new selecttreeListner());
+        
         this.myView.setListTree(this.myModel.getTextList());
     }
     
@@ -45,6 +47,15 @@ public class NoteController {
         
     }
     
+    class newnoteListner implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("..newnoteListner./");
+//            System.out.println("😅");
+//            System.out.println(isSaved);
+        }
+        
+    }
     
     class savedataListner implements ActionListener {
         @Override

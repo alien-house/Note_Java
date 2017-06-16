@@ -25,7 +25,7 @@ public class NoteView extends JFrame {
     private JButton loadButton = new JButton("Load Data");
     private JButton writeButton = new JButton("Write Data");
     private JButton newNoteButton = new JButton("New Note");
-    private JTextArea txtArea = new JTextArea();
+    private JTextArea txtArea = new JTextArea(5,5);
     private JTree tree;
     private DefaultTreeModel model;
     private DefaultMutableTreeNode root;
@@ -34,11 +34,11 @@ public class NoteView extends JFrame {
     
     public NoteView(){
         
-        Toolkit tk = Toolkit.getDefaultToolkit();  
-        int xSize = ((int) tk.getScreenSize().getWidth());  
-        int ySize = ((int) tk.getScreenSize().getHeight()); 
-        int gameHeight = (int) (Math.round(ySize * 0.80));
-        txtArea.setBounds(0, 0, 10, ySize);
+//        Toolkit tk = Toolkit.getDefaultToolkit();  
+//        int xSize = ((int) tk.getScreenSize().getWidth());  
+//        int ySize = ((int) tk.getScreenSize().getHeight()); 
+//        int gameHeight = (int) (Math.round(ySize * 0.80));
+//        txtArea.setBounds(0, 0, 10, ySize);
         txtArea.setLineWrap(true);
         txtArea.setWrapStyleWord(true);
         this.setTitle("Note");
@@ -60,13 +60,14 @@ public class NoteView extends JFrame {
         
         // Left
         JPanel compPanel = new JPanel();
+        compPanel.setBackground(new Color(240, 240, 240));
+        
         JPanel panel = new JPanel(new GridLayout(6, 1, 5, 5)); 
         panel.add(tree);
         compPanel.add(panel);
         
         JPanel buttonPanel = new JPanel();
-        JButton button = new JButton("Button 4");
-        buttonPanel.add(button);
+        buttonPanel.add(newNoteButton);
         
         JPanel leftPanel = new JPanel(new BorderLayout(5, 5));
         leftPanel.add(compPanel, BorderLayout.CENTER);
@@ -77,17 +78,17 @@ public class NoteView extends JFrame {
     public void setGridFrameCenter(){
         
         JPanel compPanel = new JPanel();
-        JPanel panel = new JPanel(new GridLayout(6, 1, 5, 5)); 
+        JPanel panel = new JPanel(new GridLayout(1, 1, 5, 5)); 
         panel.add(txtArea);
         compPanel.add(panel);
         compPanel.setBackground(Color.DARK_GRAY);
         panel.setBackground(Color.DARK_GRAY);
         
         
-        JPanel centerPanel = new JPanel(new BorderLayout(5, 5));
+        JPanel centerPanel = new JPanel(new BorderLayout(50, 50));
         centerPanel.setBackground(Color.DARK_GRAY);
-        centerPanel.add(panel, BorderLayout.CENTER);
-        add(centerPanel, BorderLayout.CENTER);
+        centerPanel.add(compPanel, BorderLayout.CENTER);
+        add(panel, BorderLayout.CENTER);
         
     }
     
@@ -153,12 +154,14 @@ public class NoteView extends JFrame {
     public void makeTree(){
         String[] treedata = {};
         tree = new JTree(treedata);
+        tree.setBackground(new Color(240, 240, 240));
         
         model = (DefaultTreeModel)tree.getModel();
         root = (DefaultMutableTreeNode) model.getRoot();
         
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBackground(Color.LIGHT_GRAY);
+//        scrollPane.setBackground(new Color(240, 240, 240));
+        scrollPane.setBackground(Color.BLACK);
         scrollPane.getViewport().setView(tree);
         scrollPane.setPreferredSize(new Dimension(120, gameHeight));
     }
@@ -174,6 +177,10 @@ public class NoteView extends JFrame {
     
     public void addSaveDataListener(ActionListener listenerforSaveButton){
         writeButton.addActionListener(listenerforSaveButton);
+    }
+    
+    public void addNewNoteListener(ActionListener listenerforNewButton){
+        newNoteButton.addActionListener(listenerforNewButton);
     }
     
     public void setListTree(ArrayList al){
