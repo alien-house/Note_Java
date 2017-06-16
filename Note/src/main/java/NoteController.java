@@ -17,6 +17,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 public class NoteController {
     private NoteView myView;
     private NoteModel myModel;
+    private DefaultMutableTreeNode node;
     
     public NoteController(NoteView myView, NoteModel myModel){
         this.myView = myView;
@@ -34,7 +35,7 @@ public class NoteController {
         public void valueChanged(TreeSelectionEvent e) {
             Object treeSource = e.getSource();
             
-            DefaultMutableTreeNode node = (DefaultMutableTreeNode) e.getPath().getLastPathComponent();
+            node = (DefaultMutableTreeNode) e.getPath().getLastPathComponent();
             System.out.println(node.getParent().getIndex(node));
             System.out.println("You selected " + node);
             
@@ -49,8 +50,11 @@ public class NoteController {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println(".../");
-//            String str = theView.getTextString();
-//            Boolean isSaved = theModel.setTextData("newFile_re.txt",str);
+            String str = myView.getTextString();
+            
+            if(node != null){
+                Boolean isSaved = myModel.saveTextData(node.toString(), str);
+            }
 //            System.out.println("😅");
 //            System.out.println(isSaved);
         }

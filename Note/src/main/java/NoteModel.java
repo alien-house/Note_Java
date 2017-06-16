@@ -52,9 +52,13 @@ public class NoteModel {
         
     }
     
-    public Boolean saveTextData(String fileName, String str){
+    public Boolean saveTextData(String key, String str){
         
         Boolean isSaved = false;
+        System.out.println("============");
+        System.out.println(key);
+        System.out.println(str);
+        ref.child(key).setValue(str);
         
 //        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 //
