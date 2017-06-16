@@ -5,9 +5,12 @@
  */
 
 import java.awt.*;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -20,10 +23,11 @@ public class NoteView extends JFrame {
     private JPanel controlPanel;
     private JButton loadButton = new JButton("Load Data");
     private JButton writeButton = new JButton("Write Data");
-    private JTextArea txtArea = new JTextArea(10,20);
+    private JTextArea txtArea = new JTextArea(15,40);
     private JTree tree;
     private DefaultTreeModel model;
     private DefaultMutableTreeNode root;
+    ArrayList<String> titleList = new ArrayList<String>();
 
     
     public NoteView(){
@@ -34,13 +38,12 @@ public class NoteView extends JFrame {
 //        model.insertNodeInto(new DefaultMutableTreeNode("another_child"), root, root.getChildCount());
         setFrame();
     }
-
-
     
     public void setFrame(){
         
-        String[] treedata = {""};
+        String[] treedata = {};
         tree = new JTree(treedata);
+        
         model = (DefaultTreeModel)tree.getModel();
         root = (DefaultMutableTreeNode) model.getRoot();
         
@@ -59,7 +62,7 @@ public class NoteView extends JFrame {
         gbc.weighty = 1;
         //left
         JPanel panelLeft = new JPanel();
-        panelLeft.setBorder(BorderFactory.createTitledBorder(eBorder, "List"));
+        panelLeft.setBorder(BorderFactory.createTitledBorder(eBorder, ""));
         gbc.gridx = 0; //リーディングエッジを含むセルを指定
         gbc.gridy = 0; //上部にセルを指定
         gbc.gridwidth = 1; // 1 行のセル数を指定
@@ -71,7 +74,7 @@ public class NoteView extends JFrame {
         gbc.weightx = 0.6;
         //center : editor
         JPanel panel1 = new JPanel();
-        panel1.setBorder(BorderFactory.createTitledBorder(eBorder, "70pct"));
+        panel1.setBorder(BorderFactory.createTitledBorder(eBorder, ""));
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.gridwidth = gbc.gridheight = 1;
@@ -82,7 +85,7 @@ public class NoteView extends JFrame {
         gbc.weightx = 0.3;
         //right : preview
         JPanel panel3 = new JPanel();
-        panel3.setBorder(BorderFactory.createTitledBorder(eBorder, "20pct"));
+        panel3.setBorder(BorderFactory.createTitledBorder(eBorder, ""));
         gbc.gridx = 2;
         gbc.gridy = 0;
         gbc.gridwidth = /*gbc.gridheight = */1;
@@ -91,10 +94,12 @@ public class NoteView extends JFrame {
         //コンポーネントの外側のパディング、つまりコンポーネントとその表示領域の端までの領域の最小値を指定します。
         gbc.insets = new Insets(2, 2, 2, 2);
         add(panel3, gbc);
-
-
-//        pack();
         setVisible(true); // important
+        
+    }
+    
+    public void addSelectTreeListener(TreeSelectionListener listenerforTree){
+        tree.addTreeSelectionListener(listenerforTree);
     }
     
     public void addLoadDataListener(ActionListener listenerforLoadButton){
@@ -105,11 +110,23 @@ public class NoteView extends JFrame {
         writeButton.addActionListener(listenerforSaveButton);
     }
     
-    public void setListTree(String txt){
+    public void setListTree(ArrayList al){
+        for (Object item: al){
+            addListTree(((Posts)item).title);
+        }
     }
+    
+    public void setTextData(String txt){
+        txtArea.setText(txt);
+    }
+    
+    
     public void addListTree(String txt){
-        root.add(new DefaultMutableTreeNode("another_child"));
+        root.add(new DefaultMutableTreeNode(txt));
         model.reload();
     }
 
+    public ArrayList getListTree(){
+        return this.titleList;
+    }
 }

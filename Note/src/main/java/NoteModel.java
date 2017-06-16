@@ -17,6 +17,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -30,7 +32,9 @@ public class NoteModel {
     // Get a reference to our posts
     final FirebaseDatabase database;
     DatabaseReference ref;
-    ArrayList<String> titleList = new ArrayList<String>();
+//    private ArrayList<String> titleList = new ArrayList<String>();
+    private ArrayList<Posts> postList = new ArrayList<Posts>();
+    private Map<String, String> map = new HashMap<>();
     
     
     public NoteModel() throws FileNotFoundException{
@@ -43,6 +47,7 @@ public class NoteModel {
 
         FirebaseApp.initializeApp(options);
         database = FirebaseDatabase.getInstance();
+        ref = database.getReference("posts");
         listenerRetrieveData();
         
     }
@@ -60,52 +65,59 @@ public class NoteModel {
         return isSaved;    
     }
     
-    
-    public ArrayList getTextList(String fileName){
-        ArrayList<String> titleList = new ArrayList<String>();
-        
-        return titleList;
+    public String getTextData(int index){
+        return this.postList.get(index).contents;
     }
     
-    public String getTextData(String fileName){
-        String filecContents = "";
-        ref = database.getReference("posts");
+    public ArrayList getTextList(){
+        return this.postList;
+    }
+    
+//    public void getTextData(String titleName){
+//        
+//        
+//        ref.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
+////                System.out.println(dataSnapshot.getKey());
+////                System.out.println(dataSnapshot.getValue());
+//                Posts newPost = dataSnapshot.getValue(Posts.class);
+//                
+//                postList.add(newPost);
+////                Post newPost = dataSnapshot.getValue(Post.class);
+////                System.out.println("Author: " + newPost.author);
+////                System.out.println("Title: " + newPost.title);
+////                System.out.println("Previous Post ID: " + prevChildKey);
+//            }
+//
+//            @Override
+//            public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {}
+//
+//            @Override
+//            public void onChildRemoved(DataSnapshot dataSnapshot) {}
+//
+//            @Override
+//            public void onChildMoved(DataSnapshot dataSnapshot, String prevChildKey) {}
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {}
+//        });
+//
+//    }
+    
+    
+    public void listenerRetrieveData(){
         
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
 //                System.out.println(dataSnapshot.getKey());
 //                System.out.println(dataSnapshot.getValue());
-//                Post newPost = dataSnapshot.getValue(Post.class);
-//                System.out.println("Author: " + newPost.author);
-//                System.out.println("Title: " + newPost.title);
-//                System.out.println("Previous Post ID: " + prevChildKey);
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {}
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {}
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String prevChildKey) {}
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {}
-        });
-
-        return filecContents;
-    }
-    
-    
-    public void listenerRetrieveData(){
-        
-        ref = database.getReference("posts");
-        ref.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-                titleList.add(dataSnapshot.getKey());
+                Posts newPost = new Posts(dataSnapshot.getKey(),dataSnapshot.getValue().toString());
+                postList.add(newPost);
+                
+//                map.put(dataSnapshot.getKey(),dataSnapshot.getValue());
+//                titleList.add(dataSnapshot.getKey());
 //                System.out.println(dataSnapshot.getKey());
 //                System.out.println(dataSnapshot.getValue());
 //                Post newPost = dataSnapshot.getValue(Post.class);

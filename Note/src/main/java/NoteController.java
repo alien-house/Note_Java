@@ -6,6 +6,9 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
  *
@@ -20,7 +23,27 @@ public class NoteController {
         this.myModel = myModel;
         this.myView.addLoadDataListener(new loaddataListner());
         this.myView.addSaveDataListener(new savedataListner());
+        this.myView.addSelectTreeListener(new selecttreeListner());
+        this.myView.setListTree(this.myModel.getTextList());
     }
+    
+    
+    class selecttreeListner implements TreeSelectionListener {
+
+        @Override
+        public void valueChanged(TreeSelectionEvent e) {
+            Object treeSource = e.getSource();
+            
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) e.getPath().getLastPathComponent();
+            System.out.println(node.getParent().getIndex(node));
+            System.out.println("You selected " + node);
+            
+            String txt = myModel.getTextData(node.getParent().getIndex(node));
+            myView.setTextData(txt);
+        }
+        
+    }
+    
     
     class savedataListner implements ActionListener {
         @Override
