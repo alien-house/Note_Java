@@ -13,6 +13,7 @@ import javax.swing.border.Border;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 
 /**
@@ -41,6 +42,8 @@ public class NoteView extends JFrame {
 //        txtArea.setBounds(0, 0, 10, ySize);
         txtArea.setLineWrap(true);
         txtArea.setWrapStyleWord(true);
+        txtArea.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        
         this.setTitle("Note");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setBounds(10, 10, 700, 600);
@@ -62,7 +65,8 @@ public class NoteView extends JFrame {
         JPanel compPanel = new JPanel();
         compPanel.setBackground(new Color(240, 240, 240));
         
-        JPanel panel = new JPanel(new GridLayout(6, 1, 5, 5)); 
+//        JPanel panel = new JPanel(new GridLayout(6, 1, 5, 5)); 
+        JPanel panel = new JPanel(); 
         panel.add(tree);
         compPanel.add(panel);
         
@@ -154,6 +158,11 @@ public class NoteView extends JFrame {
     public void makeTree(){
         String[] treedata = {};
         tree = new JTree(treedata);
+        DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
+        renderer.setBackgroundSelectionColor(Color.DARK_GRAY);
+        renderer.setBackgroundNonSelectionColor(new Color(240, 240, 240));
+
+        tree.setCellRenderer(renderer);
         tree.setBackground(new Color(240, 240, 240));
         
         model = (DefaultTreeModel)tree.getModel();
@@ -161,7 +170,6 @@ public class NoteView extends JFrame {
         
         JScrollPane scrollPane = new JScrollPane();
 //        scrollPane.setBackground(new Color(240, 240, 240));
-        scrollPane.setBackground(Color.BLACK);
         scrollPane.getViewport().setView(tree);
         scrollPane.setPreferredSize(new Dimension(120, gameHeight));
     }
