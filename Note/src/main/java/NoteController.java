@@ -74,8 +74,14 @@ public class NoteController {
     class newnoteListner implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            myModel.addListData("new Post", "");
-            myView.addListTree("new Post");
+            int num = myModel.comparePostListTitle("new Post");
+            System.out.println("@@@@@@"+num);
+            String fileName = "new Post";
+            if(num > 0){
+                fileName += num;
+            }
+            myModel.addListData(fileName, "");
+            myView.addListTree(fileName);
 //            myView.setListTree(myModel.getTextList());
         }
         

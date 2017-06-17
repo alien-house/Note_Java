@@ -129,4 +129,14 @@ public class NoteModel {
         postList.add(newPost);
     }
     
+    public int comparePostListTitle(String key){
+        int num = 0;
+        for(Posts item:postList){
+            if(item.title.contains(key)){
+                num++;
+            }
+        }
+        return num;
+    }
+    
 }
