@@ -214,4 +214,6 @@ public class NoteView extends JFrame {
         return txtArea.getText();
     }
     
+   
+    
 }

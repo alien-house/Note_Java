@@ -70,7 +70,13 @@ public class NoteModel {
     }
     
     public String getTextData(int index){
-        return this.postList.get(index).contents;
+        
+        if(this.postList.get(index) == null){
+            return "";
+        }else{
+            return this.postList.get(index).contents;
+        }
+        
     }
     
     public ArrayList getTextList(){
@@ -122,11 +128,9 @@ public class NoteModel {
                 
 //                map.put(dataSnapshot.getKey(),dataSnapshot.getValue());
 //                titleList.add(dataSnapshot.getKey());
-//                System.out.println(dataSnapshot.getKey());
 //                System.out.println(dataSnapshot.getValue());
 //                Post newPost = dataSnapshot.getValue(Post.class);
 //                System.out.println("Author: " + newPost.author);
-//                System.out.println("Title: " + newPost.title);
 //                System.out.println("Previous Post ID: " + prevChildKey);
             }
 
@@ -142,6 +146,11 @@ public class NoteModel {
             @Override
             public void onCancelled(DatabaseError databaseError) {}
         });
+    }
+    
+    public void addListData(String key, String contents){
+        Posts newPost = new Posts(key, contents);
+        postList.add(newPost);
     }
     
 }

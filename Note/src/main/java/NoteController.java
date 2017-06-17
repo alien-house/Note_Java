@@ -51,8 +51,9 @@ public class NoteController {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("..newnoteListner./");
-//            System.out.println("😅");
-//            System.out.println(isSaved);
+            myModel.addListData("new Post", "");
+            myView.addListTree("new Post");
+//            myView.setListTree(myModel.getTextList());
         }
         
     }
