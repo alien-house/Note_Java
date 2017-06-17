@@ -18,6 +18,7 @@ import javax.swing.text.AbstractDocument.DefaultDocumentEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 import util.UndoHelper;
 
 
@@ -35,6 +36,7 @@ public class NoteView extends JFrame {
     private JTree tree;
     private DefaultTreeModel model;
     private DefaultMutableTreeNode root;
+    
     ArrayList<String> titleList = new ArrayList<String>();
     int gameHeight;
     
@@ -171,6 +173,11 @@ public class NoteView extends JFrame {
         tree.setCellRenderer(renderer);
         tree.setBackground(new Color(240, 240, 240));
         
+        tree.setEditable(true);
+        tree.setComponentPopupMenu(getPopUpMenu());
+        tree.addMouseListener(getMouseListener());
+        
+        
         model = (DefaultTreeModel)tree.getModel();
         root = (DefaultMutableTreeNode) model.getRoot();
         
@@ -180,6 +187,68 @@ public class NoteView extends JFrame {
         scrollPane.setPreferredSize(new Dimension(120, gameHeight));
     }
     
+
+    private MouseListener getMouseListener() {
+        return new MouseAdapter() {
+
+            @Override
+            public void mousePressed(MouseEvent arg0) {
+                if(arg0.getButton() == MouseEvent.BUTTON3){
+                    TreePath pathForLocation = tree.getPathForLocation(arg0.getPoint().x, arg0.getPoint().y);
+                    if(pathForLocation != null){
+                        root = (DefaultMutableTreeNode) pathForLocation.getLastPathComponent();
+                    } else{
+                        root = null;
+                    }
+
+                }
+                super.mousePressed(arg0);
+            }
+        };
+    }
+
+    private JPopupMenu getPopUpMenu() {
+        JPopupMenu menu = new JPopupMenu();
+        JMenuItem item = new JMenuItem("edit");
+        item.addActionListener(getEditActionListener());
+        menu.add(item);
+
+        JMenuItem item2 = new JMenuItem("add");
+        item2.addActionListener(getAddActionListener());
+        menu.add(item2);
+
+        return menu;
+    }
+
+    private ActionListener getAddActionListener() {
+        return new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                if(root != null){
+                    System.out.println("pressed" + root);
+                    DefaultMutableTreeNode n = new DefaultMutableTreeNode("added");
+                    root.add(n);
+                    tree.repaint();
+                    tree.updateUI();
+                }
+            }
+        };
+    }
+
+    private ActionListener getEditActionListener() {
+        return new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                if(root != null){
+                    //edit here
+                    System.out.println("pressed" + root);
+                }
+            }
+        };
+    }
+
     
     public void addSelectTreeListener(TreeSelectionListener listenerforTree){
         tree.addTreeSelectionListener(listenerforTree);
