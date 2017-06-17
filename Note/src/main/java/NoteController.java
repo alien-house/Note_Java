@@ -40,9 +40,7 @@ public class NoteController {
         @Override
         public void insertUpdate(DocumentEvent e) {
             if (e instanceof AbstractDocument.DefaultDocumentEvent) {
-                System.out.println("飲茶とされたよ");
                 String str = myView.getTextString();
-
                 if(node != null){
                     myModel.setTextDataToList(node.getParent().getIndex(node), str);
                     Boolean isSaved = myModel.saveTextData(node.toString(), str);

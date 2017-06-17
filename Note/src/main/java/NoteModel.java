@@ -55,18 +55,19 @@ public class NoteModel {
     public Boolean saveTextData(String key, String str){
         
         Boolean isSaved = false;
-        System.out.println("============");
         System.out.println(key);
         System.out.println(str);
         ref.child(key).setValue(str);
+        isSaved = true;
         
-//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-//
 //        reference.child("key1").setValue("こんにちは！");
-//        reference.child("key2").setValue("ファイアーベース");
-//        reference.child("key3").setValue("よろしくお願いします！");
     
         return isSaved;    
+    }
+    
+    public void deleteTextData(String key){
+        ref.child(key).removeValue();
+        
     }
     
     public String getTextData(int index){

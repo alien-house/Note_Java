@@ -50,7 +50,6 @@ public class NoteView extends JFrame {
         txtArea.setMargin(new Insets(10, 10, 10, 10));
         UndoHelper helper = new UndoHelper(txtArea);
         
-        
 //        txtArea.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         
         this.setTitle("Note");
@@ -67,7 +66,6 @@ public class NoteView extends JFrame {
         setGridFrameLeft();
         setGridFrameCenter();
     }
-    
     
     public void setGridFrameLeft(){
         
@@ -98,14 +96,12 @@ public class NoteView extends JFrame {
         compPanel.setBackground(Color.DARK_GRAY);
         panel.setBackground(Color.DARK_GRAY);
         
-        
         JPanel centerPanel = new JPanel(new BorderLayout(50, 50));
         centerPanel.setBackground(Color.DARK_GRAY);
         centerPanel.add(compPanel, BorderLayout.CENTER);
         add(panel, BorderLayout.CENTER);
         
     }
-    
     
     
     public void setFrame(){
