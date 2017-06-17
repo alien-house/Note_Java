@@ -10,8 +10,11 @@ import java.awt.BorderLayout;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
+import javax.swing.text.AbstractDocument.DefaultDocumentEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
@@ -42,7 +45,8 @@ public class NoteView extends JFrame {
 //        txtArea.setBounds(0, 0, 10, ySize);
         txtArea.setLineWrap(true);
         txtArea.setWrapStyleWord(true);
-        txtArea.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        txtArea.setMargin(new Insets(10, 10, 10, 10));
+//        txtArea.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         
         this.setTitle("Note");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,6 +62,7 @@ public class NoteView extends JFrame {
         setGridFrameLeft();
         setGridFrameCenter();
     }
+    
     
     public void setGridFrameLeft(){
         
@@ -189,6 +194,10 @@ public class NoteView extends JFrame {
     
     public void addNewNoteListener(ActionListener listenerforNewButton){
         newNoteButton.addActionListener(listenerforNewButton);
+    }
+    
+    public void addDocListener(DocumentListener listenerforSaveDocment){
+        txtArea.getDocument().addDocumentListener(listenerforSaveDocment);
     }
     
     public void setListTree(ArrayList al){

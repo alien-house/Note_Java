@@ -6,8 +6,11 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
+import javax.swing.text.AbstractDocument;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
@@ -26,21 +29,42 @@ public class NoteController {
         this.myView.addSaveDataListener(new savedataListner());
         this.myView.addNewNoteListener(new newnoteListner());
         this.myView.addSelectTreeListener(new selecttreeListner());
+        this.myView.addDocListener(new DocListener());
         
         this.myView.setListTree(this.myModel.getTextList());
     }
     
+    
+    private class DocListener implements DocumentListener {
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            if (e instanceof AbstractDocument.DefaultDocumentEvent) {
+                System.out.println("飲茶とされたよ");
+                String str = myView.getTextString();
+
+                if(node != null){
+                    myModel.setTextDataToList(node.getParent().getIndex(node), str);
+                    Boolean isSaved = myModel.saveTextData(node.toString(), str);
+                }
+            }
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {}
+        @Override
+        public void changedUpdate(DocumentEvent e) {}
+    }   
     
     class selecttreeListner implements TreeSelectionListener {
 
         @Override
         public void valueChanged(TreeSelectionEvent e) {
             Object treeSource = e.getSource();
-            
             node = (DefaultMutableTreeNode) e.getPath().getLastPathComponent();
-            System.out.println(node.getParent().getIndex(node));
-            System.out.println("You selected " + node);
-            
+//            System.out.println(node.getParent().getIndex(node));
+//            System.out.println("You selected " + node);
+//            
             String txt = myModel.getTextData(node.getParent().getIndex(node));
             myView.setTextData(txt);
         }
@@ -50,7 +74,6 @@ public class NoteController {
     class newnoteListner implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("..newnoteListner./");
             myModel.addListData("new Post", "");
             myView.addListTree("new Post");
 //            myView.setListTree(myModel.getTextList());

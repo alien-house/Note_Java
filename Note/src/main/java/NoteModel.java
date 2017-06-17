@@ -83,37 +83,13 @@ public class NoteModel {
         return this.postList;
     }
     
-//    public void getTextData(String titleName){
-//        
-//        
-//        ref.addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-////                System.out.println(dataSnapshot.getKey());
-////                System.out.println(dataSnapshot.getValue());
-//                Posts newPost = dataSnapshot.getValue(Posts.class);
-//                
-//                postList.add(newPost);
-////                Post newPost = dataSnapshot.getValue(Post.class);
-////                System.out.println("Author: " + newPost.author);
-////                System.out.println("Title: " + newPost.title);
-////                System.out.println("Previous Post ID: " + prevChildKey);
-//            }
-//
-//            @Override
-//            public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {}
-//
-//            @Override
-//            public void onChildRemoved(DataSnapshot dataSnapshot) {}
-//
-//            @Override
-//            public void onChildMoved(DataSnapshot dataSnapshot, String prevChildKey) {}
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {}
-//        });
-//
-//    }
+    public void setTextDataToList(int index, String s){
+        
+        if(this.postList.get(index) != null){
+            this.postList.get(index).contents = s;
+        }
+        
+    }
     
     
     public void listenerRetrieveData(){
