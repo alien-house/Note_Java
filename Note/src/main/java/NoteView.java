@@ -18,6 +18,8 @@ import javax.swing.text.AbstractDocument.DefaultDocumentEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
+import util.UndoHelper;
+
 
 /**
  *
@@ -46,6 +48,9 @@ public class NoteView extends JFrame {
         txtArea.setLineWrap(true);
         txtArea.setWrapStyleWord(true);
         txtArea.setMargin(new Insets(10, 10, 10, 10));
+        UndoHelper helper = new UndoHelper(txtArea);
+        
+        
 //        txtArea.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         
         this.setTitle("Note");
