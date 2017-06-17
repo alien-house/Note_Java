@@ -1,7 +1,3 @@
 # Include your project-specific ignores in this file
 # Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
-dist
-bower_components
-node_modules
-npm-debug.log
-vendor
+/Note/javafinalproject-eaa83-firebase-adminsdk-fb4es-75ae0e7d75.json
