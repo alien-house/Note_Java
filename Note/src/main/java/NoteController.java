@@ -29,6 +29,8 @@ public class NoteController {
     private NoteView myView;
     private NoteModel myModel;
     private DefaultMutableTreeNode root;
+    TreePath pathForLocation;
+    private TreePath path;
     
     public NoteController(NoteView myView, NoteModel myModel){
         this.myView = myView;
@@ -48,23 +50,25 @@ public class NoteController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            
             if(root != null){
+                //==========
 //                myView.removeListTree();
-                
-                    DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(root.toString());
-                    System.out.println("childNode:" + childNode);
-                    JTree tree = myView.getJTree();
-                                       DefaultMutableTreeNode node = 
-      (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
+                DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(root.toString());
+                System.out.println("childNode:" + childNode);
+                JTree tree = myView.getJTree();
+                DefaultMutableTreeNode node = (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
 
-            if(node != null && node.getParent() != null){
-              System.out.println("nodeは" + node + "です");
-        //      root.remove(node);
-            DefaultTreeModel model = myView.getModel();
-        //      node.removeFromParent();
-              model.removeNodeFromParent(node);
-              model.reload();
-            }
+                if(node != null && node.getParent() != null){
+                    System.out.println("nodeは" + node + "です");
+            //      root.remove(node);
+                    DefaultTreeModel model = myView.getModel();
+            //      node.removeFromParent();
+                    tree.setSelectionPath(null);
+                    model.removeNodeFromParent(node);
+                    model.reload();
+                }
+            //================
     
 
 //                    myView.removeListTree((root.getParent().getIndex(root)));
@@ -112,7 +116,8 @@ public class NoteController {
             System.out.println(arg0.getButton());
             if(arg0.getButton() == MouseEvent.BUTTON3){
                 JTree tree = myView.getJTree();
-                TreePath pathForLocation = tree.getPathForLocation(arg0.getPoint().x, arg0.getPoint().y);
+                path = tree.getPathForLocation(arg0.getPoint().x, arg0.getPoint().y);
+                pathForLocation = tree.getPathForLocation(arg0.getPoint().x, arg0.getPoint().y);
                 if(pathForLocation != null){
                     root = (DefaultMutableTreeNode) pathForLocation.getLastPathComponent();
                 } else{
