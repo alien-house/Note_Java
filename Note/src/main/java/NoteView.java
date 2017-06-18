@@ -69,10 +69,14 @@ public class NoteView extends JFrame {
         makeTree();
         
         setGridFrameLeft();
+        setGridFrameRight();
         setGridFrameCenter();
-        String html = new PegDownProcessor().markdownToHtml("# Hello, world");
+        
+        String html = new PegDownProcessor().markdownToHtml("# Hello, world"
+                + "- hofekei");
         System.out.println( "deeifhmeru" );
         System.out.println( html );
+        
     }
     
     public void setGridFrameLeft(){
@@ -90,11 +94,29 @@ public class NoteView extends JFrame {
         buttonPanel.add(newNoteButton);
         
         JPanel leftPanel = new JPanel(new BorderLayout(5, 5));
+        leftPanel.setPreferredSize(new Dimension(140, 0));
         leftPanel.add(compPanel, BorderLayout.CENTER);
         leftPanel.add(buttonPanel, BorderLayout.PAGE_END);
         add(leftPanel, BorderLayout.LINE_START);
         
     }
+    
+    public void setGridFrameRight(){
+        JPanel compPanel = new JPanel();
+        
+//        JButton btn = new JButton("dede");
+//        compPanel.add(btn);
+        
+        
+        JPanel rightPanel = new JPanel(new BorderLayout(5, 5));
+//        rightPanel.setPreferredSize(new Dimension(350, 0));
+        rightPanel.setBackground(new Color(133, 133, 133));
+        rightPanel.add(compPanel);
+        add(rightPanel, BorderLayout.LINE_END);
+        
+    }
+    
+    
     public void setGridFrameCenter(){
         
         JPanel compPanel = new JPanel();
