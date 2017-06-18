@@ -4,14 +4,21 @@
  * and open the template in the editor.
  */
 
+import java.awt.*;
+import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import javax.swing.JTree;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.text.AbstractDocument;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
 
 /**
  *
@@ -20,7 +27,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 public class NoteController {
     private NoteView myView;
     private NoteModel myModel;
-    private DefaultMutableTreeNode node;
+    private DefaultMutableTreeNode root;
     
     public NoteController(NoteView myView, NoteModel myModel){
         this.myView = myView;
@@ -30,10 +37,37 @@ public class NoteController {
         this.myView.addNewNoteListener(new newnoteListner());
         this.myView.addSelectTreeListener(new selecttreeListner());
         this.myView.addDocListener(new DocListener());
+//        this.myView.addMouseListener(new MyMouseListener());
         
         this.myView.setListTree(this.myModel.getTextList());
     }
     
+
+    private class MyMouseListener implements MouseListener{
+        @Override
+        public void mousePressed(MouseEvent arg0) {
+            if(arg0.getButton() == MouseEvent.BUTTON3){
+                JTree tree = myView.getJTree();
+                TreePath pathForLocation = tree.getPathForLocation(arg0.getPoint().x, arg0.getPoint().y);
+                if(pathForLocation != null){
+                    root = (DefaultMutableTreeNode) pathForLocation.getLastPathComponent();
+                } else{
+                    root = null;
+                }
+
+            }
+//            super.mousePressed(arg0);
+        }
+        public void mouseReleased(MouseEvent e) {
+        }
+        public void mouseEntered(MouseEvent e) {
+        }
+        public void mouseExited(MouseEvent e) {
+        }
+        public void mouseClicked(MouseEvent e) {
+        }
+    }
+
     
     private class DocListener implements DocumentListener {
 
@@ -41,9 +75,9 @@ public class NoteController {
         public void insertUpdate(DocumentEvent e) {
             if (e instanceof AbstractDocument.DefaultDocumentEvent) {
                 String str = myView.getTextString();
-                if(node != null){
-                    myModel.setTextDataToList(node.getParent().getIndex(node), str);
-                    Boolean isSaved = myModel.saveTextData(node.toString(), str);
+                if(root != null){
+                    myModel.setTextDataToList(root.getParent().getIndex(root), str);
+                    Boolean isSaved = myModel.saveTextData(root.toString(), str);
                 }
             }
         }
@@ -59,11 +93,11 @@ public class NoteController {
         @Override
         public void valueChanged(TreeSelectionEvent e) {
             Object treeSource = e.getSource();
-            node = (DefaultMutableTreeNode) e.getPath().getLastPathComponent();
+            root = (DefaultMutableTreeNode) e.getPath().getLastPathComponent();
 //            System.out.println(node.getParent().getIndex(node));
 //            System.out.println("You selected " + node);
 //            
-            String txt = myModel.getTextData(node.getParent().getIndex(node));
+            String txt = myModel.getTextData(root.getParent().getIndex(root));
             myView.setTextData(txt);
         }
         
@@ -91,8 +125,8 @@ public class NoteController {
             System.out.println(".../");
             String str = myView.getTextString();
             
-            if(node != null){
-                Boolean isSaved = myModel.saveTextData(node.toString(), str);
+            if(root != null){
+                Boolean isSaved = myModel.saveTextData(root.toString(), str);
             }
 //            System.out.println("😅");
 //            System.out.println(isSaved);
