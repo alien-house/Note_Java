@@ -7,6 +7,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.BorderLayout;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -15,6 +16,9 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.text.AbstractDocument.DefaultDocumentEvent;
+import javax.swing.text.Document;
+import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.text.html.StyleSheet;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
@@ -72,10 +76,6 @@ public class NoteView extends JFrame {
         setGridFrameRight();
         setGridFrameCenter();
         
-        String html = new PegDownProcessor().markdownToHtml("# Hello, world"
-                + "- hofekei");
-        System.out.println( "deeifhmeru" );
-        System.out.println( html );
         
     }
     
@@ -102,14 +102,34 @@ public class NoteView extends JFrame {
     }
     
     public void setGridFrameRight(){
-        JPanel compPanel = new JPanel();
+
+        String htmls = new PegDownProcessor().markdownToHtml("# Hello, world \n - hofekei");
+//        System.out.println( html );
         
+        JPanel compPanel = new JPanel();
+        JEditorPane htmlPane = new JEditorPane();
+        htmlPane.setContentType("text/html");
+        htmlPane.setEditable(false);
+        
+        
+        HTMLEditorKit kit = new HTMLEditorKit();
+        StyleSheet styleSheet = kit.getStyleSheet();
+        htmlPane.setEditorKit(kit);
+        styleSheet.addRule("body {color:#000; font-family:times; margin: 4px; }");
+        styleSheet.addRule("h1 {color: blue;}");
+        styleSheet.addRule("h2 {color: #ff0000;}");
+        styleSheet.addRule("pre {font : 10px monaco; color : black; background-color : #fafafa; }");
+        Document doc = kit.createDefaultDocument();
+        htmlPane.setDocument(doc);
+        htmlPane.setText(htmls);
+        
+        compPanel.add(htmlPane);
 //        JButton btn = new JButton("dede");
 //        compPanel.add(btn);
         
         
         JPanel rightPanel = new JPanel(new BorderLayout(5, 5));
-//        rightPanel.setPreferredSize(new Dimension(350, 0));
+        rightPanel.setPreferredSize(new Dimension(250, 0));
         rightPanel.setBackground(new Color(133, 133, 133));
         rightPanel.add(compPanel);
         add(rightPanel, BorderLayout.LINE_END);
