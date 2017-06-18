@@ -18,6 +18,7 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.text.AbstractDocument;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 
 /**
@@ -37,15 +38,68 @@ public class NoteController {
         this.myView.addNewNoteListener(new newnoteListner());
         this.myView.addSelectTreeListener(new selecttreeListner());
         this.myView.addDocListener(new DocListener());
-//        this.myView.addMouseListener(new MyMouseListener());
+        this.myView.addMouseListener(new MyMouseListener());
+        this.myView.addDeleteTreeListListener(new DeleteListener());
         
         this.myView.setListTree(this.myModel.getTextList());
     }
     
+    class DeleteListener implements ActionListener {
 
-    private class MyMouseListener implements MouseListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(root != null){
+//                myView.removeListTree();
+                
+                    DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(root.toString());
+                    System.out.println("childNode:" + childNode);
+
+                    myView.removeListTree((root.getParent().getIndex(root)));
+                
+//                DefaultMutableTreeNode n = new DefaultMutableTreeNode();
+//                JTree tree = myView.getJTree();
+//                
+//                DefaultTreeModel model = myView.getModel();
+//                TreePath[] paths = tree.getSelectionPaths();
+//                for (TreePath path : paths) {
+//                    System.out.println("path:"+path);
+//                    DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
+//                
+//                    System.out.println("node:"+node);
+//                        model.removeNodeFromParent(node);
+////                        System.out.println("@_@");
+////                    if (node.getParent() != null) {
+////                        model.removeNodeFromParent(node);
+////                        System.out.println("*_-");
+////                        System.out.println(node.toString());
+////                        myModel.deleteTextData(node.toString());
+////                    }
+//                }
+//                
+                
+                
+                
+                
+//                    System.out.println("pressed:" + root.getParent().getIndex(root));
+//                    DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(root.toString());
+//                    System.out.println("childNode:" + childNode);
+//                    root.remove(root.getParent().getIndex(root));
+//                    root.remove(childNode);
+//                    myModel.deleteTextData(root.toString());
+//                    root.add(n);
+//                    tree.repaint();
+//                    tree.updateUI();
+            }
+        }
+        
+    }
+
+    private class MyMouseListener extends MouseAdapter implements MouseListener{
+        
         @Override
         public void mousePressed(MouseEvent arg0) {
+            System.out.println("=======");
+            System.out.println(arg0.getButton());
             if(arg0.getButton() == MouseEvent.BUTTON3){
                 JTree tree = myView.getJTree();
                 TreePath pathForLocation = tree.getPathForLocation(arg0.getPoint().x, arg0.getPoint().y);
@@ -56,15 +110,7 @@ public class NoteController {
                 }
 
             }
-//            super.mousePressed(arg0);
-        }
-        public void mouseReleased(MouseEvent e) {
-        }
-        public void mouseEntered(MouseEvent e) {
-        }
-        public void mouseExited(MouseEvent e) {
-        }
-        public void mouseClicked(MouseEvent e) {
+            super.mousePressed(arg0);
         }
     }
 

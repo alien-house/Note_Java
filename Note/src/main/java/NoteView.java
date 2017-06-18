@@ -18,6 +18,7 @@ import javax.swing.text.AbstractDocument.DefaultDocumentEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreePath;
 import util.UndoHelper;
 
@@ -36,6 +37,7 @@ public class NoteView extends JFrame {
     private JTree tree;
     private DefaultTreeModel model;
     private DefaultMutableTreeNode root;
+    private JMenuItem item2;
     
     ArrayList<String> titleList = new ArrayList<String>();
     int gameHeight;
@@ -213,32 +215,31 @@ public class NoteView extends JFrame {
     
     private JPopupMenu getPopUpMenu() {
         JPopupMenu menu = new JPopupMenu();
-//        JMenuItem item = new JMenuItem("edit");
-//        item.addActionListener(getEditActionListener());
-//        menu.add(item);
 
-        JMenuItem item2 = new JMenuItem("delete");
-        item2.addActionListener(getDeleteActionListener());
+        item2 = new JMenuItem("delete");
         menu.add(item2);
 
         return menu;
     }
 
-    private ActionListener getDeleteActionListener() {
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                if(root != null){
-                    System.out.println("pressed" + arg0);
+//    private ActionListener getDeleteActionListener() {
+//        return new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent arg0) {
+//                if(root != null){
+//                    System.out.println("pressed" + arg0);
 //                    System.out.println("pressed" + root.getParent().getIndex(root));
-//                    DefaultMutableTreeNode n = new DefaultMutableTreeNode("added");
-//                    root.remove(root.getParent().getIndex(root));
-//                    root.add(n);
-//                    tree.repaint();
-//                    tree.updateUI();
-                }
-            }
-        };
+////                    DefaultMutableTreeNode n = new DefaultMutableTreeNode("added");
+////                    root.remove(root.getParent().getIndex(root));
+////                    root.add(n);
+////                    tree.repaint();
+////                    tree.updateUI();
+//                }
+//            }
+//        };
+//    }
+    public void addDeleteTreeListListener(ActionListener listenerforDeleteTreeList){
+        item2.addActionListener(listenerforDeleteTreeList);
     }
 
 //    private ActionListener getEditActionListener() {
@@ -291,6 +292,43 @@ public class NoteView extends JFrame {
         model.reload();
     }
 
+    public void removeListTree(int index){
+//        root.remove(new DefaultMutableTreeNode(txt));
+//        DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(txt);
+//        
+//        MutableTreeNode parent = (MutableTreeNode) childNode.getParent();
+System.out.println("inde============");        
+System.out.println(index);
+System.out.println("root============");        
+System.out.println(root);
+        root.remove(index);
+//        if (parent != null) {
+//                // 親がある場合は、currentNodeを親から削除
+//                model.removeNodeFromParent(childNode);
+//                return;
+//        // 親がなければ、currentNodeはルート
+//        } else {
+//                model.setRoot(null);
+//        }
+        
+        
+        
+        
+        
+        
+        
+        
+//        
+//        if(childNode != null){
+////            model.removeNodeFromParent(childNode);
+//        }
+//root.removeAllChildren();
+//        model.removeNodeFromParent(new DefaultMutableTreeNode(txt));
+        model.reload();
+//tree.repaint();
+//tree.updateUI();
+    }
+    
     public ArrayList getListTree(){
         return this.titleList;
     }
@@ -302,6 +340,9 @@ public class NoteView extends JFrame {
     public JTree getJTree(){
         return tree;
     }
-   
+    
+    public DefaultTreeModel getModel(){
+        return model;
+    }
     
 }

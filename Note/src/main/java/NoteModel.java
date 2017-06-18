@@ -55,8 +55,8 @@ public class NoteModel {
     public Boolean saveTextData(String key, String str){
         
         Boolean isSaved = false;
-        System.out.println(key);
-        System.out.println(str);
+//        System.out.println(key);
+//        System.out.println(str);
         ref.child(key).setValue(str);
         isSaved = true;
         
