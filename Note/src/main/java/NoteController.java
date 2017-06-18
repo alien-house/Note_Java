@@ -54,55 +54,25 @@ public class NoteController {
             if(root != null){
                 //==========
 //                myView.removeListTree();
-                DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(root.toString());
-                System.out.println("childNode:" + childNode);
+//                DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(root.toString());
+//                System.out.println("childNode:" + childNode);
                 JTree tree = myView.getJTree();
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
 
                 if(node != null && node.getParent() != null){
-                    System.out.println("nodeは" + node + "です");
-            //      root.remove(node);
-                    DefaultTreeModel model = myView.getModel();
-            //      node.removeFromParent();
-                    tree.setSelectionPath(null);
-                    model.removeNodeFromParent(node);
-                    model.reload();
+                    myView.removeListTree(node);
+                    myModel.deleteTextData(node.toString());
+//                    
+//                    System.out.println("nodeは" + node + "です");
+//            //      root.remove(node);
+//                    DefaultTreeModel model = myView.getModel();
+//            //      node.removeFromParent();
+//                    tree.setSelectionPath(null);
+//                    model.removeNodeFromParent(node);
+//                    model.reload();
                 }
             //================
     
-
-//                    myView.removeListTree((root.getParent().getIndex(root)));
-                
-//                DefaultMutableTreeNode n = new DefaultMutableTreeNode();
-//                JTree tree = myView.getJTree();
-//                
-//                DefaultTreeModel model = myView.getModel();
-//                TreePath[] paths = tree.getSelectionPaths();
-//                for (TreePath path : paths) {
-//                    System.out.println("path:"+path);
-//                    DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
-//                
-//                    System.out.println("node:"+node);
-//                        model.removeNodeFromParent(node);
-////                        System.out.println("@_@");
-////                    if (node.getParent() != null) {
-////                        model.removeNodeFromParent(node);
-////                        System.out.println("*_-");
-////                        System.out.println(node.toString());
-////                        myModel.deleteTextData(node.toString());
-////                    }
-//                }
-//                
-                
-//                    System.out.println("pressed:" + root.getParent().getIndex(root));
-//                    DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(root.toString());
-//                    System.out.println("childNode:" + childNode);
-//                    root.remove(root.getParent().getIndex(root));
-//                    root.remove(childNode);
-//                    myModel.deleteTextData(root.toString());
-//                    root.add(n);
-//                    tree.repaint();
-//                    tree.updateUI();
             }
         }
         

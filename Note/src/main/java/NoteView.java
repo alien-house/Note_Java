@@ -294,16 +294,27 @@ public class NoteView extends JFrame {
         model.reload();
     }
 
-    public void removeListTree(int index){
+    public void removeListTree(DefaultMutableTreeNode node){
+        tree.setSelectionPath(null);
+        model.removeNodeFromParent(node);
+        model.reload();
+        
+        
+        
+        
+        
+        
+        
+        
 //        root.remove(new DefaultMutableTreeNode(txt));
 //        DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(txt);
 //        
 //        MutableTreeNode parent = (MutableTreeNode) childNode.getParent();
-System.out.println("inde============");        
-System.out.println(index);
-System.out.println("root============");        
-System.out.println(root);
-        root.remove(index);
+//System.out.println("inde============");        
+//System.out.println(index);
+//System.out.println("root============");        
+//System.out.println(root);
+//        root.remove(index);
 //        if (parent != null) {
 //                // 親がある場合は、currentNodeを親から削除
 //                model.removeNodeFromParent(childNode);
@@ -326,7 +337,7 @@ System.out.println(root);
 //        }
 //root.removeAllChildren();
 //        model.removeNodeFromParent(new DefaultMutableTreeNode(txt));
-        model.reload();
+//        model.reload();
 //tree.repaint();
 //tree.updateUI();
     }
