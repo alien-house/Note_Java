@@ -217,6 +217,7 @@ public class NoteView extends JFrame {
         JPopupMenu menu = new JPopupMenu();
 
         item2 = new JMenuItem("delete");
+//        item2.addActionListener(getDeleteActionListener());
         menu.add(item2);
 
         return menu;
@@ -226,14 +227,15 @@ public class NoteView extends JFrame {
 //        return new ActionListener() {
 //            @Override
 //            public void actionPerformed(ActionEvent arg0) {
+//
 //                if(root != null){
 //                    System.out.println("pressed" + arg0);
 //                    System.out.println("pressed" + root.getParent().getIndex(root));
-////                    DefaultMutableTreeNode n = new DefaultMutableTreeNode("added");
-////                    root.remove(root.getParent().getIndex(root));
+//                    DefaultMutableTreeNode n = new DefaultMutableTreeNode("added");
+//                    root.remove(root.getParent().getIndex(root));
 ////                    root.add(n);
-////                    tree.repaint();
-////                    tree.updateUI();
+//                    tree.repaint();
+//                    tree.updateUI();
 //                }
 //            }
 //        };

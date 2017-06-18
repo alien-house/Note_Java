@@ -53,8 +53,21 @@ public class NoteController {
                 
                     DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(root.toString());
                     System.out.println("childNode:" + childNode);
+                    JTree tree = myView.getJTree();
+                                       DefaultMutableTreeNode node = 
+      (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
 
-                    myView.removeListTree((root.getParent().getIndex(root)));
+            if(node != null && node.getParent() != null){
+              System.out.println("nodeは" + node + "です");
+        //      root.remove(node);
+            DefaultTreeModel model = myView.getModel();
+        //      node.removeFromParent();
+              model.removeNodeFromParent(node);
+              model.reload();
+            }
+    
+
+//                    myView.removeListTree((root.getParent().getIndex(root)));
                 
 //                DefaultMutableTreeNode n = new DefaultMutableTreeNode();
 //                JTree tree = myView.getJTree();
@@ -76,9 +89,6 @@ public class NoteController {
 ////                    }
 //                }
 //                
-                
-                
-                
                 
 //                    System.out.println("pressed:" + root.getParent().getIndex(root));
 //                    DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(root.toString());
