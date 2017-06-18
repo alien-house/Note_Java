@@ -20,6 +20,7 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreePath;
+import org.pegdown.PegDownProcessor;
 import util.UndoHelper;
 
 
@@ -69,6 +70,9 @@ public class NoteView extends JFrame {
         
         setGridFrameLeft();
         setGridFrameCenter();
+        String html = new PegDownProcessor().markdownToHtml("# Hello, world");
+        System.out.println( "deeifhmeru" );
+        System.out.println( html );
     }
     
     public void setGridFrameLeft(){
