@@ -43,6 +43,7 @@ public class NoteView extends JFrame {
     private DefaultTreeModel model;
     private DefaultMutableTreeNode root;
     private JMenuItem item2;
+    private JEditorPane htmlPane;
     
     ArrayList<String> titleList = new ArrayList<String>();
     int gameHeight;
@@ -103,11 +104,11 @@ public class NoteView extends JFrame {
     
     public void setGridFrameRight(){
 
-        String htmls = new PegDownProcessor().markdownToHtml("# Hello, world \n - hofekei");
 //        System.out.println( html );
         
-        JPanel compPanel = new JPanel();
-        JEditorPane htmlPane = new JEditorPane();
+        String htmls = new PegDownProcessor().markdownToHtml("# Hello, world \n - hofekei");
+        JPanel compPanel = new JPanel(new GridLayout(1, 1, 5, 5));
+        htmlPane = new JEditorPane();
         htmlPane.setContentType("text/html");
         htmlPane.setEditable(false);
         
@@ -115,13 +116,12 @@ public class NoteView extends JFrame {
         HTMLEditorKit kit = new HTMLEditorKit();
         StyleSheet styleSheet = kit.getStyleSheet();
         htmlPane.setEditorKit(kit);
-        styleSheet.addRule("body {color:#000; font-family:times; margin: 4px; }");
+        styleSheet.addRule("body {color:#000; font-family: arial, sans-serif; margin: 4px; }");
         styleSheet.addRule("h1 {color: blue;}");
         styleSheet.addRule("h2 {color: #ff0000;}");
         styleSheet.addRule("pre {font : 10px monaco; color : black; background-color : #fafafa; }");
         Document doc = kit.createDefaultDocument();
         htmlPane.setDocument(doc);
-        htmlPane.setText(htmls);
         
         compPanel.add(htmlPane);
 //        JButton btn = new JButton("dede");
@@ -133,6 +133,12 @@ public class NoteView extends JFrame {
         rightPanel.setBackground(new Color(133, 133, 133));
         rightPanel.add(compPanel);
         add(rightPanel, BorderLayout.LINE_END);
+        
+    }
+    
+    public void setTextToMarkdown(String txt){
+        String htmls = new PegDownProcessor().markdownToHtml(txt);
+        htmlPane.setText(htmls);
         
     }
     
@@ -152,7 +158,6 @@ public class NoteView extends JFrame {
         add(panel, BorderLayout.CENTER);
         
     }
-    
     
     public void setFrame(){
         

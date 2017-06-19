@@ -107,12 +107,12 @@ public class NoteController {
             if (e instanceof AbstractDocument.DefaultDocumentEvent) {
                 String str = myView.getTextString();
                 if(root != null){
+                    myView.setTextToMarkdown(str);
                     myModel.setTextDataToList(root.getParent().getIndex(root), str);
                     Boolean isSaved = myModel.saveTextData(root.toString(), str);
                 }
             }
         }
-
         @Override
         public void removeUpdate(DocumentEvent e) {}
         @Override

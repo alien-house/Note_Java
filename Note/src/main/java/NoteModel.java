@@ -26,11 +26,7 @@ import java.util.Map;
  */
 public class NoteModel {
     
-    static String JSON_FILE_NAME = "/Users/shinji/Mydata/personalmarketing/english/canada/school/CICCC/subject/202/Note/javafinalproject-eaa83-firebase-adminsdk-fb4es-75ae0e7d75.json";
-    static String URL = "https://javafinalproject-eaa83.firebaseio.com";
-    
     // Get a reference to our posts
-    final FirebaseDatabase database;
     DatabaseReference ref;
 //    private ArrayList<String> titleList = new ArrayList<String>();
     private ArrayList<Posts> postList = new ArrayList<Posts>();
@@ -38,16 +34,17 @@ public class NoteModel {
     
     
     public NoteModel() throws FileNotFoundException{
-    
-        // using Firebase 
-        FirebaseOptions options = new FirebaseOptions.Builder()
-                .setServiceAccount(new FileInputStream(JSON_FILE_NAME))
-                .setDatabaseUrl(URL)
-                .build();
-
-        FirebaseApp.initializeApp(options);
-        database = FirebaseDatabase.getInstance();
-        ref = database.getReference("posts");
+        
+//        // using Firebase 
+//        FirebaseOptions options = new FirebaseOptions.Builder()
+//                .setServiceAccount(new FileInputStream(NoteGlobals.FIREBASE_JSON))
+//                .setDatabaseUrl(NoteGlobals.FIREBASE_URL)
+//                .build();
+//
+//        FirebaseApp.initializeApp(options);
+//        database = FirebaseDatabase.getInstance();
+//        ref = database.getReference("posts");
+        ref = NoteGlobals.getFireReference();
         listenerRetrieveData();
         
     }

@@ -1,5 +1,6 @@
 
 import java.io.FileNotFoundException;
+import javax.swing.JFrame;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,6 +20,12 @@ public class Note {
         NoteView myView = new NoteView();
         NoteController myController = new NoteController(myView, myModel);
         myView.setVisible(true);
+                
+//        LoginForm frame = new LoginForm();
+//        frame.Main();
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.pack();
+//        frame.setVisible(true);
         
         
 //        System.out.println("whwywhwywhwywy");
