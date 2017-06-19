@@ -15,14 +15,15 @@ import javax.swing.JFrame;
 public class Note {
     
     public static void main(String[] args) throws FileNotFoundException {
-        
-        NoteModel myModel = new NoteModel();
-        NoteView myView = new NoteView();
-        NoteController myController = new NoteController(myView, myModel);
-        myView.setVisible(true);
-                
-//        LoginForm frame = new LoginForm();
-//        frame.Main();
+                        
+
+//        NoteModel myModel = new NoteModel();
+//        NoteView myView = new NoteView();
+//        NoteController myController = new NoteController(myView, myModel);
+//        myView.setVisible(true);
+
+        LoginView frame = new LoginView();
+        frame.start();
 //        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //        frame.pack();
 //        frame.setVisible(true);

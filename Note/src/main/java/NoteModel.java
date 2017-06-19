@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,16 +32,6 @@ public class NoteModel {
     
     
     public NoteModel() throws FileNotFoundException{
-        
-//        // using Firebase 
-//        FirebaseOptions options = new FirebaseOptions.Builder()
-//                .setServiceAccount(new FileInputStream(NoteGlobals.FIREBASE_JSON))
-//                .setDatabaseUrl(NoteGlobals.FIREBASE_URL)
-//                .build();
-//
-//        FirebaseApp.initializeApp(options);
-//        database = FirebaseDatabase.getInstance();
-//        ref = database.getReference("posts");
         ref = NoteGlobals.getFireReference();
         listenerRetrieveData();
         
