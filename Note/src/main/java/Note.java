@@ -1,5 +1,7 @@
 
 import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /*
@@ -14,16 +16,28 @@ import javax.swing.JFrame;
  */
 public class Note {
     
-    public static void main(String[] args) throws FileNotFoundException {
-                        
-
+    public static void main(String[] args) {
+                    
+        LoginModel loginModel;
+        try {
+            loginModel = new LoginModel();
+            LoginView loginView = new LoginView();
+            loginView.start();
+            LoginController loginController = new LoginController(loginView, loginModel);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(NoteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+//
 //        NoteModel myModel = new NoteModel();
 //        NoteView myView = new NoteView();
 //        NoteController myController = new NoteController(myView, myModel);
 //        myView.setVisible(true);
 
-        LoginView frame = new LoginView();
-        frame.start();
+
+//
+//        LoginView frame = new LoginView();
+//        frame.start();
 //        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //        frame.pack();
 //        frame.setVisible(true);

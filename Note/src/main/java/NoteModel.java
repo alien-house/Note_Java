@@ -32,7 +32,7 @@ public class NoteModel {
     
     
     public NoteModel() throws FileNotFoundException{
-        ref = NoteGlobals.getFireReference();
+        ref = NoteGlobals.getPostReference();
         listenerRetrieveData();
         
     }

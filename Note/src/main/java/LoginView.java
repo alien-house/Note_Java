@@ -253,8 +253,8 @@ public class LoginView extends javax.swing.JFrame {
                 new LoginView().setVisible(true);
             }
         });
-        Connection conn = null;
-        Statement stmt = null;
+//        Connection conn = null;
+//        Statement stmt = null;
 //       
 //        try{//STEP 2: Register JDBC driver
 //            Class.forName("com.mysql.jdbc.Driver");

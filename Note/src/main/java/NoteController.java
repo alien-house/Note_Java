@@ -11,6 +11,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTree;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -35,6 +38,8 @@ public class NoteController {
     public NoteController(NoteView myView, NoteModel myModel){
         this.myView = myView;
         this.myModel = myModel;
+        
+        
         this.myView.addLoadDataListener(new loaddataListner());
         this.myView.addSaveDataListener(new savedataListner());
         this.myView.addNewNoteListener(new newnoteListner());

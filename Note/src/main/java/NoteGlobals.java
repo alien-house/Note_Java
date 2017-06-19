@@ -1,6 +1,7 @@
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,22 +26,55 @@ public class NoteGlobals {
     
     public static String FIREBASE_JSON = "/Users/shinji/Mydata/personalmarketing/english/canada/school/CICCC/subject/202/Note/javafinalproject-eaa83-firebase-adminsdk-fb4es-75ae0e7d75.json";
     public static String FIREBASE_URL = "https://javafinalproject-eaa83.firebaseio.com";
-    public static DatabaseReference ref;
+    public static FirebaseDatabase database;
+    public static DatabaseReference postRef = null;
+    public static DatabaseReference userRef = null;
     
-    public static DatabaseReference getFireReference() throws FileNotFoundException{
-        if(ref != null){
-            return ref;
+    public static DatabaseReference getPostReference(){
+        if(postRef != null){
+            return postRef;
         }else{
-            FirebaseOptions options = new FirebaseOptions.Builder()
-                    .setServiceAccount(new FileInputStream(FIREBASE_JSON))
-                    .setDatabaseUrl(NoteGlobals.FIREBASE_URL)
-                    .build();
-
-            FirebaseApp.initializeApp(options);
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            ref = database.getReference("posts");
-            return ref;
+            if(database == null){
+                try{
+                    createFireDatabase();
+                }catch(FileNotFoundException e){
+                    System.out.println("no database");
+                }
+            }
+            postRef = database.getReference("posts");
+            return postRef;
         }
+    }
+    public static FirebaseAuth getFirebaseAuth(){
+        FirebaseAuth defaultAuth = FirebaseAuth.getInstance();
+        return defaultAuth;
+    }
+    
+    public static DatabaseReference getUserReference(){
+        if(userRef != null){
+            return userRef;
+        }else{
+            if(database == null){
+                try{
+                    createFireDatabase();
+                }catch(FileNotFoundException e){
+                    System.out.println("no database");
+                }
+            }
+            userRef = database.getReference("user");
+            return userRef;
+        }
+        
+    }
+    
+    private static void createFireDatabase() throws FileNotFoundException{
+        FirebaseOptions options = new FirebaseOptions.Builder()
+                .setServiceAccount(new FileInputStream(FIREBASE_JSON))
+                .setDatabaseUrl(NoteGlobals.FIREBASE_URL)
+                .build();
+
+        FirebaseApp.initializeApp(options);
+        database = FirebaseDatabase.getInstance();
     }
     
 }
