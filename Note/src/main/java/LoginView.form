@@ -66,7 +66,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="loginButton" min="-2" pref="107" max="-2" attributes="0"/>
+                          <Component id="registerButton" min="-2" pref="107" max="-2" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -74,8 +74,8 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="passwordField1" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="textField1" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="resPassTextField" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="resEmailTextField" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -89,15 +89,15 @@
                       <EmptySpace pref="34" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textField1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="resEmailTextField" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="passwordField1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="resPassTextField" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="loginButton" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="registerButton" min="-2" pref="35" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -109,9 +109,9 @@
                 <Property name="text" type="java.lang.String" value="E-Mail"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="textField1">
+            <Component class="javax.swing.JTextField" name="resEmailTextField">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textField1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resEmailTextFieldActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
@@ -119,15 +119,16 @@
                 <Property name="text" type="java.lang.String" value="Password"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JPasswordField" name="passwordField1">
+            <Component class="javax.swing.JPasswordField" name="resPassTextField">
             </Component>
-            <Component class="javax.swing.JButton" name="loginButton">
+            <Component class="javax.swing.JButton" name="registerButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Register"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loginButtonActionPerformed"/>
-              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="LoginView_registerButton"/>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -146,7 +147,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="loginButton2" alignment="1" min="-2" pref="107" max="-2" attributes="0"/>
+                          <Component id="loginButton" alignment="1" min="-2" pref="107" max="-2" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -154,8 +155,8 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="passwordField3" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="textField3" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="logPassTextField" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="logEmailTextField" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -169,24 +170,24 @@
                       <EmptySpace pref="34" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textField3" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="logEmailTextField" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="passwordField3" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="logPassTextField" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="loginButton2" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="loginButton" min="-2" pref="35" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="textField3">
+            <Component class="javax.swing.JTextField" name="logEmailTextField">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textField3ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logEmailTextFieldActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
@@ -199,15 +200,12 @@
                 <Property name="text" type="java.lang.String" value="Password"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JPasswordField" name="passwordField3">
+            <Component class="javax.swing.JPasswordField" name="logPassTextField">
             </Component>
-            <Component class="javax.swing.JButton" name="loginButton2">
+            <Component class="javax.swing.JButton" name="loginButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Login"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loginButton2ActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>

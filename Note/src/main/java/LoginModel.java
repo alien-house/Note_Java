@@ -38,26 +38,54 @@ public class LoginModel {
         
         ref = NoteGlobals.getUserReference();
         
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+        ref.orderByKey().addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot ds, String string) {
+//                System.out.println(ds.getKey());
+//                System.out.println(ds.getValue());
+                NoteGlobals.setUserData(ds.getKey(),ds.getValue());
+//              
+//                System.out.println(ds);
+            }
+            @Override
+            public void onChildChanged(DataSnapshot ds, String string) {
+                }
+
+            @Override
+            public void onChildRemoved(DataSnapshot ds) {
+                }
+
+            @Override
+            public void onChildMoved(DataSnapshot ds, String string) {
+                }
+
+            @Override
+            public void onCancelled(DatabaseError de) {
+                }
+        });
+        
+        
+        ref.orderByKey().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                System.out.println(dataSnapshot.getValue().getClass());
+//                System.out.println(dataSnapshot.getValue());
                 Gson gsons = new Gson();
-                Map<String, Object> map1 = new HashMap<String, Object>((Map<? extends String, ? extends Object>) dataSnapshot.getValue()); 
-//                HashMap<String, Object> hashmap = dataSnapshot.getValue();
-//                HashMap<String, Object> hashmap = new HashMap<String, Object>( dataSnapshot.getValue());
-//                Map<String, Object> map = new HashMap( dataSnapshot.getValue());
-
-                System.out.println("user number"+ map1.size());
-                map1.forEach((x,y)-> {
-//                    System.out.println("key : " + x + " , value : " + y);
-//                    System.out.println(y.getClass());
-
-                    userList = new LinkedHashMap<String, String>( (Map<? extends String, ? extends String>) y);
-                    userList.forEach((x2,y2)-> {
-                        System.out.println("key2 : " + x2 + " , value2 : " + y2);
-                    });
-                });
+//                NoteGlobals.setUserData(new HashMap<String, Object>((Map<? extends String, ? extends Object>) dataSnapshot.getValue()));
+//                Map<String, Object> map1 = new HashMap<String, Object>((Map<? extends String, ? extends Object>) dataSnapshot.getValue()); 
+////                HashMap<String, Object> hashmap = dataSnapshot.getValue();
+////                HashMap<String, Object> hashmap = new HashMap<String, Object>( dataSnapshot.getValue());
+////                Map<String, Object> map = new HashMap( dataSnapshot.getValue());
+//                
+//                System.out.println("user number"+ map1.size());
+//                map1.forEach((x,y)-> {
+////                    System.out.println("key : " + x + " , value : " + y);
+////                    System.out.println(y.getClass());
+//
+//                    userList = new LinkedHashMap<String, String>( (Map<? extends String, ? extends String>) y);
+//                    userList.forEach((x2,y2)-> {
+////                        System.out.println("key2 : " + x2 + " , value2 : " + y2);
+//                    });
+//                });
                 
 //                JsonElement json = gson.fromJson(dataSnapshot.getValue(), JsonElement.class);
 //                String result = gsons.toJson(dataSnapshot.getValue());
@@ -81,7 +109,7 @@ public class LoginModel {
 //        
 //        ref.child("user2").child("email").setValue("mousiwakenai@gmai.com");
 //        ref.child("user2").child("pass").setValue("ooo");
-//        
+        
 //        ref.child("user3").child("email").setValue("kokokokok@gmai.com");
 //        ref.child("user3").child("pass").setValue("dafae");
 //        

@@ -12,6 +12,9 @@ import com.google.firebase.database.ChildEventListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -29,6 +32,7 @@ public class NoteGlobals {
     public static FirebaseDatabase database;
     public static DatabaseReference postRef = null;
     public static DatabaseReference userRef = null;
+    public static LinkedHashMap<String, Object> userList = new LinkedHashMap<>();
     
     public static DatabaseReference getPostReference(){
         if(postRef != null){
@@ -66,6 +70,19 @@ public class NoteGlobals {
         }
         
     }
+    public static void setUserData(String key, Object obj){
+        userList.put(key,obj);
+//        userList = new LinkedHashMap<String, Object>(map); 
+        
+//        userList.forEach((x,y)-> {
+//               System.out.println("key: : " + x + " , value: : " + y);
+//        });
+
+    }
+    public static LinkedHashMap getUserData(){
+        return userList;
+    }
+    
     
     private static void createFireDatabase() throws FileNotFoundException{
         FirebaseOptions options = new FirebaseOptions.Builder()
