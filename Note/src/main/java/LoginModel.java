@@ -65,40 +65,40 @@ public class LoginModel {
         });
         
         
-        ref.orderByKey().addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-//                System.out.println(dataSnapshot.getValue());
-                Gson gsons = new Gson();
-//                NoteGlobals.setUserData(new HashMap<String, Object>((Map<? extends String, ? extends Object>) dataSnapshot.getValue()));
-//                Map<String, Object> map1 = new HashMap<String, Object>((Map<? extends String, ? extends Object>) dataSnapshot.getValue()); 
-////                HashMap<String, Object> hashmap = dataSnapshot.getValue();
-////                HashMap<String, Object> hashmap = new HashMap<String, Object>( dataSnapshot.getValue());
-////                Map<String, Object> map = new HashMap( dataSnapshot.getValue());
+//        ref.orderByKey().addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+////                System.out.println(dataSnapshot.getValue());
+//                Gson gsons = new Gson();
+////                NoteGlobals.setUserData(new HashMap<String, Object>((Map<? extends String, ? extends Object>) dataSnapshot.getValue()));
+////                Map<String, Object> map1 = new HashMap<String, Object>((Map<? extends String, ? extends Object>) dataSnapshot.getValue()); 
+//////                HashMap<String, Object> hashmap = dataSnapshot.getValue();
+//////                HashMap<String, Object> hashmap = new HashMap<String, Object>( dataSnapshot.getValue());
+//////                Map<String, Object> map = new HashMap( dataSnapshot.getValue());
+////                
+////                System.out.println("user number"+ map1.size());
+////                map1.forEach((x,y)-> {
+//////                    System.out.println("key : " + x + " , value : " + y);
+//////                    System.out.println(y.getClass());
+////
+////                    userList = new LinkedHashMap<String, String>( (Map<? extends String, ? extends String>) y);
+////                    userList.forEach((x2,y2)-> {
+//////                        System.out.println("key2 : " + x2 + " , value2 : " + y2);
+////                    });
+////                });
 //                
-//                System.out.println("user number"+ map1.size());
-//                map1.forEach((x,y)-> {
-////                    System.out.println("key : " + x + " , value : " + y);
-////                    System.out.println(y.getClass());
+////                JsonElement json = gson.fromJson(dataSnapshot.getValue(), JsonElement.class);
+////                String result = gsons.toJson(dataSnapshot.getValue());
+////                System.out.println(result);
+////                gsons.fromJson(dataSnapshot.getValue());
+////                Gson gsons = dataSnapshot.getValue();
+//            }
 //
-//                    userList = new LinkedHashMap<String, String>( (Map<? extends String, ? extends String>) y);
-//                    userList.forEach((x2,y2)-> {
-////                        System.out.println("key2 : " + x2 + " , value2 : " + y2);
-//                    });
-//                });
-                
-//                JsonElement json = gson.fromJson(dataSnapshot.getValue(), JsonElement.class);
-//                String result = gsons.toJson(dataSnapshot.getValue());
-//                System.out.println(result);
-//                gsons.fromJson(dataSnapshot.getValue());
-//                Gson gsons = dataSnapshot.getValue();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // ...
-            }
-        });
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                // ...
+//            }
+//        });
         
         
 //        System.out.println(text);        // 「hello」と出力

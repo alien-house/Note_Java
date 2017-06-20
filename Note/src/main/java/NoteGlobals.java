@@ -45,6 +45,7 @@ public class NoteGlobals {
                     System.out.println("no database");
                 }
             }
+                    System.out.println("取れたよuserID：："+userID);
             postRef = database.getReference("posts").child(userID);
             return postRef;
         }

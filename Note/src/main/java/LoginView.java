@@ -74,6 +74,7 @@ public class LoginView extends javax.swing.JFrame {
                         if(checkInt[0] >= 2){
                             userID = x;
                             System.out.println("合格です！！！");
+                            System.out.println(userID);
                             callNoteWindow(userID);
                             
                             setVisible(false);

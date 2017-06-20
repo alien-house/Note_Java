@@ -105,7 +105,8 @@ public class NoteView extends JFrame {
     public void setGridFrameRight(){
 
 //        System.out.println( html );
-//        String htmls = new PegDownProcessor().markdownToHtml("# Hello, world \n - hofekei");
+        
+        String htmls = new PegDownProcessor().markdownToHtml("# Hello, world \n - hofekei");
         JPanel compPanel = new JPanel(new GridLayout(1, 1, 5, 5));
         htmlPane = new JEditorPane();
         htmlPane.setContentType("text/html");
@@ -138,7 +139,6 @@ public class NoteView extends JFrame {
     public void setTextToMarkdown(String txt){
         String htmls = new PegDownProcessor().markdownToHtml(txt);
         htmlPane.setText(htmls);
-        
     }
     
     

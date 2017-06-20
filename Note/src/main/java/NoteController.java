@@ -134,6 +134,7 @@ public class NoteController {
 //            System.out.println("You selected " + node);
 //            
             String txt = myModel.getTextData(root.getParent().getIndex(root));
+            myView.setTextToMarkdown(txt);
             myView.setTextData(txt);
         }
         
