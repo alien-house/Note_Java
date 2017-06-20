@@ -67,6 +67,11 @@ public class NoteController {
                 if(node != null && node.getParent() != null){
                     myView.removeListTree(node);
                     myModel.deleteTextData(node.toString());
+                    
+                    
+                    //:***
+                    myView.setTextToMarkdown("");
+                    myView.setTextData( "");
 //                    
 //                    System.out.println("nodeは" + node + "です");
 //            //      root.remove(node);

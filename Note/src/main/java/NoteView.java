@@ -294,21 +294,6 @@ public class NoteView extends JFrame {
         item2.addActionListener(listenerforDeleteTreeList);
     }
 
-//    private ActionListener getEditActionListener() {
-//        return new ActionListener() {
-//
-//            @Override
-//            public void actionPerformed(ActionEvent arg0) {
-//                if(root != null){
-//                    //edit here
-//                    System.out.println("pressed" + root);
-//                }
-//            }
-//        };
-//    }
-    
-
-    
     public void addSelectTreeListener(TreeSelectionListener listenerforTree){
         tree.addTreeSelectionListener(listenerforTree);
     }
@@ -349,47 +334,6 @@ public class NoteView extends JFrame {
         model.removeNodeFromParent(node);
         model.reload();
         
-        
-        
-        
-        
-        
-        
-        
-//        root.remove(new DefaultMutableTreeNode(txt));
-//        DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(txt);
-//        
-//        MutableTreeNode parent = (MutableTreeNode) childNode.getParent();
-//System.out.println("inde============");        
-//System.out.println(index);
-//System.out.println("root============");        
-//System.out.println(root);
-//        root.remove(index);
-//        if (parent != null) {
-//                // 親がある場合は、currentNodeを親から削除
-//                model.removeNodeFromParent(childNode);
-//                return;
-//        // 親がなければ、currentNodeはルート
-//        } else {
-//                model.setRoot(null);
-//        }
-        
-        
-        
-        
-        
-        
-        
-        
-//        
-//        if(childNode != null){
-////            model.removeNodeFromParent(childNode);
-//        }
-//root.removeAllChildren();
-//        model.removeNodeFromParent(new DefaultMutableTreeNode(txt));
-//        model.reload();
-//tree.repaint();
-//tree.updateUI();
     }
     
     public ArrayList getListTree(){
