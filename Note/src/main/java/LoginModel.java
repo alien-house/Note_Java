@@ -32,9 +32,9 @@ public class LoginModel {
     LinkedHashMap<String, String> userList;
             
     public LoginModel() throws FileNotFoundException{
-        UserAccount user = new UserAccount("komagire@gmaicom","papapa");
-        Gson gson = new Gson();
-        String text = gson.toJson(user);
+//        UserAccount user = new UserAccount("komagire@gmaicom","papapa");
+//        Gson gson = new Gson();
+//        String text = gson.toJson(user);
         
         ref = NoteGlobals.getUserReference();
         

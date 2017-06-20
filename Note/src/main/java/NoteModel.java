@@ -31,8 +31,8 @@ public class NoteModel {
     private Map<String, String> map = new HashMap<>();
     
     
-    public NoteModel() throws FileNotFoundException{
-        ref = NoteGlobals.getPostReference();
+    public NoteModel(String userID) throws FileNotFoundException{
+        ref = NoteGlobals.getPostReference(userID);
         listenerRetrieveData();
         
     }

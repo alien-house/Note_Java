@@ -34,7 +34,7 @@ public class NoteGlobals {
     public static DatabaseReference userRef = null;
     public static LinkedHashMap<String, Object> userList = new LinkedHashMap<>();
     
-    public static DatabaseReference getPostReference(){
+    public static DatabaseReference getPostReference(String userID){
         if(postRef != null){
             return postRef;
         }else{
@@ -45,7 +45,7 @@ public class NoteGlobals {
                     System.out.println("no database");
                 }
             }
-            postRef = database.getReference("posts");
+            postRef = database.getReference("posts").child(userID);
             return postRef;
         }
     }

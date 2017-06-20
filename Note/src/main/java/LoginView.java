@@ -1,6 +1,7 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -11,6 +12,8 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -45,11 +48,10 @@ public class LoginView extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 String inputLoginEmail = logEmailTextField.getText();
                 String inputLoginPass = new String(logPassTextField.getPassword());
-//                if(inputLoginEmail.length() <= 6){
-//                    System.out.println("ちゃんと入れて");
-//                }else{
-//                    
-//                }
+                if(inputLoginEmail.length() <= 6){
+                    System.out.println("ちゃんと入れて");
+                    return;
+                }
                 userList  = NoteGlobals.getUserData();
                 userList.forEach((x,y)-> {
                     final int checkInt[] = {0};
@@ -72,6 +74,8 @@ public class LoginView extends javax.swing.JFrame {
                         if(checkInt[0] >= 2){
                             userID = x;
                             System.out.println("合格です！！！");
+                            callNoteWindow(userID);
+                            
                             setVisible(false);
                             return;
                         }
@@ -101,6 +105,20 @@ public class LoginView extends javax.swing.JFrame {
 
         });
     }
+    
+    private void callNoteWindow(String userID) {
+        
+        NoteModel myModel;
+        try {
+            myModel = new NoteModel(userID);
+            NoteView myView = new NoteView();
+            NoteController myController = new NoteController(myView, myModel);
+            myView.setVisible(true);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     
 //    public void addLoginListener(ActionListener listenerforLoginButton){
 //        
