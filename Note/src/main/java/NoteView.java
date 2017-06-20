@@ -83,12 +83,12 @@ public class NoteView extends JFrame {
     public void setGridFrameLeft(){
         
         // Left
-        JPanel compPanel = new JPanel();
+        JPanel compPanel = new JPanel(new GridLayout(1, 1, 5, 5));
         compPanel.setBackground(new Color(240, 240, 240));
         
 //        JPanel panel = new JPanel(new GridLayout(6, 1, 5, 5)); 
         JPanel panel = new JPanel(); 
-        panel.add(tree);
+        panel.add(tree, BorderLayout.LINE_START);
         compPanel.add(panel);
         
         JPanel buttonPanel = new JPanel();

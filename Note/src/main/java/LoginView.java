@@ -70,7 +70,6 @@ public class LoginView extends javax.swing.JFrame {
                                 }
                                 break;
                         }
-                        System.out.println("checkInt:"+checkInt[0]);
                         if(checkInt[0] >= 2){
                             userID = x;
                             System.out.println("合格です！！！");
